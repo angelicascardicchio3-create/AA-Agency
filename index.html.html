@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AA Agency — Social Media Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:       #F2A7C3;
+      --rose-deep:  #E07FA5;
+      --rose-pale:  #FDE8F2;
+      --rose-blush: #FBD4E8;
+      --rose-dark:  #C0557E;
+      --black:      #1A1018;
+      --grey:       #6B5566;
+      --white:      #FFFBFD;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 6vw;
+      background: rgba(255,251,253,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rose-blush);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--rose-dark);
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--grey);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--rose-dark); }
+    .nav-cta {
+      background: var(--rose-dark); color: white !important;
+      padding: 10px 22px; border-radius: 30px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--rose-deep) !important; color: white !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center;
+      padding: 120px 6vw 80px;
+      background: linear-gradient(160deg, var(--rose-pale) 0%, var(--white) 60%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--rose-blush) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, var(--rose-blush) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--rose-blush); color: var(--rose-dark);
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 30px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.05;
+      color: var(--black); margin-bottom: 24px;
+      max-width: 800px;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--rose-dark);
+    }
+    .hero p {
+      font-size: 1.15rem; color: var(--grey);
+      max-width: 540px; line-height: 1.7; margin-bottom: 44px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--rose-dark); color: white;
+      padding: 16px 36px; border-radius: 50px;
+      font-size: 1rem; font-weight: 600;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(192,85,126,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(192,85,126,0.4); }
+    .btn-secondary {
+      border: 2px solid var(--rose); color: var(--rose-dark);
+      padding: 14px 34px; border-radius: 50px;
+      font-size: 1rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--rose-pale); }
+
+    .hero-names {
+      margin-top: 60px;
+      display: flex; gap: 12px; align-items: center;
+      font-size: 0.85rem; color: var(--grey);
+    }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1rem; color: white;
+    }
+    .avatar-a { background: var(--rose-dark); }
+    .avatar-b { background: var(--rose); margin-left: -12px; border: 2px solid white; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 6vw; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--rose-dark); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--black); margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--grey); font-size: 1.05rem; line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; margin-top: 56px;
+    }
+    .service-card {
+      background: var(--rose-pale);
+      border-radius: 20px; padding: 36px 30px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1.5px solid transparent;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(192,85,126,0.15);
+      border-color: var(--rose);
+    }
+    .service-icon {
+      font-size: 2.2rem; margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--black); margin-bottom: 12px;
+    }
+    .service-card p { color: var(--grey); font-size: 0.95rem; line-height: 1.65; }
+
+    /* ── WHY ── */
+    .why {
+      background: linear-gradient(135deg, var(--rose-dark) 0%, #D4688F 100%);
+      color: white;
+    }
+    .why .section-label { color: var(--rose-blush); }
+    .why .section-title { color: white; }
+    .why .section-sub { color: rgba(255,255,255,0.75); max-width: 100%; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px; margin-top: 56px;
+    }
+    .why-item { text-align: center; padding: 20px; }
+    .why-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--rose-blush); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .why-item h4 {
+      font-size: 1rem; font-weight: 600; margin-bottom: 8px;
+    }
+    .why-item p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+    /* ── PLATFORMS ── */
+    .platforms { background: var(--rose-pale); }
+    .platforms-row {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      margin-top: 48px;
+    }
+    .platform-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: white; border-radius: 50px;
+      padding: 14px 24px;
+      font-weight: 600; font-size: 1rem; color: var(--black);
+      box-shadow: 0 2px 12px rgba(192,85,126,0.1);
+    }
+    .platform-pill span { font-size: 1.4rem; }
+
+    /* ── TEAM ── */
+    .team { background: var(--white); text-align: center; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px; margin-top: 56px; max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+    .team-card {
+      background: var(--rose-pale);
+      border-radius: 24px; padding: 48px 32px;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-4px); }
+    .team-avatar {
+      width: 90px; height: 90px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900; color: white;
+      margin: 0 auto 20px;
+    }
+    .team-card:nth-child(1) .team-avatar { background: var(--rose-dark); }
+    .team-card:nth-child(2) .team-avatar { background: var(--rose); }
+    .team-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--black);
+      margin-bottom: 6px;
+    }
+    .team-card .role {
+      color: var(--rose-dark); font-size: 0.9rem;
+      font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 14px;
+    }
+    .team-card p { color: var(--grey); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--black); color: white;
+      text-align: center; padding: 100px 6vw;
+    }
+    .cta-section .section-label { color: var(--rose); }
+    .cta-section .section-title { color: white; max-width: 600px; margin: 0 auto 16px; }
+    .cta-section .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 40px; text-align: center; }
+    .cta-phone {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--rose-dark); color: white;
+      padding: 18px 40px; border-radius: 50px;
+      font-size: 1.2rem; font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 28px rgba(192,85,126,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-phone:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(192,85,126,0.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 30px 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900; font-size: 1.2rem; color: var(--rose);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 5vw; }
+      .nav-links { display: none; }
+      section { padding: 70px 5vw; }
+      .hero { padding: 100px 5vw 60px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">AA Agency</div>
+    <ul class="nav-links">
+      <li><a href="#servizi">Servizi</a></li>
+      <li><a href="#chi-siamo">Chi siamo</a></li>
+      <li><a href="#contatti" class="nav-cta">Contattaci</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Social Media Agency</div>
+    <h1>La tua attività <em>merita</em><br>di essere vista.</h1>
+    <p>Creiamo contenuti video per Instagram e TikTok che trasformano la tua presenza online in clienti reali. Niente improvvisazione — solo strategia, creatività e risultati.</p>
+    <div class="hero-btns">
+      <a href="#contatti" class="btn-primary">Inizia ora</a>
+      <a href="#servizi" class="btn-secondary">Scopri i servizi</a>
+    </div>
+    <div class="hero-names">
+      <div class="avatar avatar-a">A</div>
+      <div class="avatar avatar-b">A</div>
+      <span>Angelica & Aida — fondatrici di AA Agency</span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servizi">
+    <div class="reveal">
+      <span class="section-label">Cosa facciamo</span>
+      <h2 class="section-title">Contenuti che fanno<br>la differenza</h2>
+      <p class="section-sub">Da zero a una presenza social riconoscibile. Gestiamo tutto — dalla strategia alla pubblicazione.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🎬</div>
+        <h3>Video & Reels</h3>
+        <p>Produciamo video professionali per Instagram Reels e TikTok pensati per catturare l'attenzione e far crescere il tuo account organicamente.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📱</div>
+        <h3>Gestione Social</h3>
+        <p>Gestiamo i tuoi profili Instagram e TikTok: piano editoriale, pubblicazione, interazione con la community e monitoraggio dei risultati.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">✍️</div>
+        <h3>Copywriting & Script</h3>
+        <p>Scriviamo caption, script per video e call-to-action che parlano davvero al tuo pubblico e spingono all'azione.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📣</div>
+        <h3>Sponsorizzazioni</h3>
+        <p>Strategia e gestione di campagne a pagamento su Instagram e TikTok per raggiungere nuovi clienti in modo mirato.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📊</div>
+        <h3>Analisi & Report</h3>
+        <p>Report mensili chiari e comprensibili. Sai sempre come stanno andando i tuoi contenuti e dove si può migliorare.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💡</div>
+        <h3>Consulenza Strategica</h3>
+        <p>Chiamata strategica per capire la tua attività, i tuoi obiettivi e costruire insieme un piano social su misura.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="reveal">
+      <span class="section-label">Perché sceglierci</span>
+      <h2 class="section-title">Numeri che parlano<br>per noi</h2>
+      <p class="section-sub">Lavoriamo con passione e metodo per portare risultati concreti alle attività che seguiamo.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-num">+50</div>
+        <h4>Clienti seguiti</h4>
+        <p>Attività locali e nazionali che hanno scelto AA Agency</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">100%</div>
+        <h4>Contenuti originali</h4>
+        <p>Nessun template — ogni contenuto è creato su misura per te</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">2</div>
+        <h4>Piattaforme focus</h4>
+        <p>Instagram e TikTok — dove i tuoi clienti passano il tempo</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">∞</div>
+        <h4>Idee creative</h4>
+        <p>Non finiamo mai di trovare nuovi modi per raccontare la tua storia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms">
+    <div class="reveal">
+      <span class="section-label">Dove operiamo</span>
+      <h2 class="section-title">Le piattaforme<br>che conosciamo</h2>
+      <p class="section-sub">Specializziamo i contenuti per ogni piattaforma, perché ciò che funziona su TikTok non è uguale a ciò che funziona su Instagram.</p>
+    </div>
+    <div class="platforms-row">
+      <div class="platform-pill reveal"><span>📸</span> Instagram Feed</div>
+      <div class="platform-pill reveal"><span>🎞️</span> Instagram Reels</div>
+      <div class="platform-pill reveal"><span>📖</span> Instagram Stories</div>
+      <div class="platform-pill reveal"><span>🎵</span> TikTok</div>
+      <div class="platform-pill reveal"><span>📣</span> Meta Ads</div>
+      <div class="platform-pill reveal"><span>🎯</span> TikTok Ads</div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="chi-siamo">
+    <div class="reveal">
+      <span class="section-label">Chi siamo</span>
+      <h2 class="section-title">Due ragazze,<br>una visione</h2>
+      <p class="section-sub" style="margin: 0 auto;">Siamo Angelica e Aida. Abbiamo fondato AA Agency perché crediamo che ogni attività meriti una presenza social professionale, indipendentemente dalle dimensioni.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">A</div>
+        <h3>Angelica Scardicchio</h3>
+        <div class="role">Co-Fondatrice</div>
+        <p>Specializzata in strategia dei contenuti e storytelling visivo. Trasforma la storia di ogni brand in video che le persone vogliono condividere.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">A</div>
+        <h3>Aida Cataudella</h3>
+        <div class="role">Co-Fondatrice</div>
+        <p>Esperta di crescita organica e advertising sui social. Porta i contenuti davanti alle persone giuste, al momento giusto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contatti">
+    <span class="section-label">Iniziamo insieme</span>
+    <h2 class="section-title">Pronta a far crescere<br>la tua attività?</h2>
+    <p class="section-sub">Scrivici o chiamaci — la prima consulenza è gratuita. Ti diciamo subito cosa possiamo fare per te.</p>
+    <a href="tel:+393347818820" class="cta-phone">
+      📞 334 781 8820
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">AA Agency</div>
+    <p>© 2024 AA Agency — Angelica Scardicchio & Aida Cataudella</p>
+    <p>📞 334 781 8820</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
